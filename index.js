@@ -1,9 +1,13 @@
-const SeedTokenAPIClientEthereumETHPersonal = require('./src/SeedTokenAPIClientEthereumETHPersonal.js')
-const SeedTokenAPIClientEthereumETH = null //not available yet
-const SeedTokenAPIClientEthereumERC20 = null //not available yet
+const BlockchainServiceAPIClient = require('./src/BlockchainServiceAPIClient');
+const SeedTokenAPIClientAbstract = require('./src/SeedTokenAPIClientAbstract');
+const SeedTokenAPIClientGeneral = require('./src/SeedTokenAPIClientGeneral');
+const SeedTokenAPIClientPersonal = require('./src/SeedTokenAPIClientPersonal');
+const SeedTokenAPIClientCui = require('./src/SeedTokenAPIClientCui');
 
 module.exports = {
-    SeedTokenAPIClientEthereumETHPersonal,
-    SeedTokenAPIClientEthereumETH,
-    SeedTokenAPIClientEthereumERC20
+    BlockchainServiceAPIClient,
+    SeedTokenAPIClientAbstract,
+    SeedTokenAPIClientCui,
+    SeedTokenAPIClientGeneral,
+    SeedTokenAPIClientPersonal
 }

@@ -1,0 +1,495 @@
+[
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "userFactory",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "seedToken",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "licenseChangeDelay",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "isOwner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "isInitialised",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "userRepository",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "componentRepository",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "componentFactory",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "publishingCommission",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "usageCommissionPercentage",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "oldAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "newAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "UserFactoryChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "oldAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "newAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "ComponentFactoryChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "userRepository",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "userFactory",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "componentRepository",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "componentFactory",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "seedToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "licenseChangeDelay",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "publishingCommission",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "usageCommissionPercentage",
+        "type": "uint256"
+      }
+    ],
+    "name": "Initialised",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "oldLicenseChangeDelay",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "newLicenseChangeDelay",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "LicenseChangeDelayChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "oldPublishingCommission",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "newPublishingCommission",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "PublishingCommissionChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "oldUsageCommissionPercentage",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "newUsageCommissionPercetange",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "UsageCommissionPercentageChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_userRepository",
+        "type": "address"
+      },
+      {
+        "name": "_userFactory",
+        "type": "address"
+      },
+      {
+        "name": "_componentRepository",
+        "type": "address"
+      },
+      {
+        "name": "_componentFactory",
+        "type": "address"
+      },
+      {
+        "name": "_seedToken",
+        "type": "address"
+      },
+      {
+        "name": "_licenseChangeDelay",
+        "type": "uint256"
+      },
+      {
+        "name": "_publishingCommission",
+        "type": "uint256"
+      },
+      {
+        "name": "_usageCommissionPercentage",
+        "type": "uint256"
+      }
+    ],
+    "name": "init",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newAddress",
+        "type": "address"
+      }
+    ],
+    "name": "changeUserFactory",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newAddress",
+        "type": "address"
+      }
+    ],
+    "name": "changeComponentFactory",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newLicenseChangeDelay",
+        "type": "uint256"
+      }
+    ],
+    "name": "changeLicenseChangeDelay",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newPublishingCommission",
+        "type": "uint256"
+      }
+    ],
+    "name": "changePublishingCommission",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newUsageCommissionPercentage",
+        "type": "uint256"
+      }
+    ],
+    "name": "changeUsageCommissionPercentage",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

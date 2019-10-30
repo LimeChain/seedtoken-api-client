@@ -1,0 +1,478 @@
+[
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "latestLicenseChange",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "isRevoked",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "version",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "subscribers",
+    "outputs": [
+      {
+        "name": "lastSubscriptionId",
+        "type": "uint256"
+      },
+      {
+        "name": "isActive",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "globalController",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "subscribersArr",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "licenseFee",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "_globalController",
+        "type": "address"
+      },
+      {
+        "name": "_owner",
+        "type": "address"
+      },
+      {
+        "name": "_licenseFee",
+        "type": "uint256"
+      },
+      {
+        "name": "_isRevoked",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "subscriber",
+        "type": "address"
+      }
+    ],
+    "name": "SubscriberAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "subscriber",
+        "type": "address"
+      }
+    ],
+    "name": "Unsubscribed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "subscriber",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "subscriptionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "licenseFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "SubscriptionCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "subscriber",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "SubscriptionRenewed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "previousFee",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "newFee",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "LicenseFeeChange",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "isRevoked",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "Revoke",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "subscriber",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "Usage",
+    "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_licenseFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "modifyLicenseFee",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "revoke",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "unrevoke",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "subscribe",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "unsubscribe",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_subscriber",
+        "type": "address"
+      }
+    ],
+    "name": "record",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getSubscribersArray",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getSubscribersArrayLength",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_subscriber",
+        "type": "address"
+      }
+    ],
+    "name": "getLatestSubscriptionForUser",
+    "outputs": [
+      {
+        "components": [
+          {
+            "name": "start",
+            "type": "uint256"
+          },
+          {
+            "name": "end",
+            "type": "uint256"
+          },
+          {
+            "name": "usage",
+            "type": "uint256"
+          },
+          {
+            "name": "totalCharged",
+            "type": "uint256"
+          },
+          {
+            "name": "fee",
+            "type": "uint256"
+          }
+        ],
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_subscriber",
+        "type": "address"
+      },
+      {
+        "name": "_index",
+        "type": "uint256"
+      }
+    ],
+    "name": "getSubscriptionForUserByIndex",
+    "outputs": [
+      {
+        "components": [
+          {
+            "name": "start",
+            "type": "uint256"
+          },
+          {
+            "name": "end",
+            "type": "uint256"
+          },
+          {
+            "name": "usage",
+            "type": "uint256"
+          },
+          {
+            "name": "totalCharged",
+            "type": "uint256"
+          },
+          {
+            "name": "fee",
+            "type": "uint256"
+          }
+        ],
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
