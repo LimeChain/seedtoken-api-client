@@ -3,11 +3,13 @@ const SeedTokenAPIClientAbstract = require('./src/SeedTokenAPIClientAbstract');
 const SeedTokenAPIClientGeneral = require('./src/SeedTokenAPIClientGeneral');
 const SeedTokenAPIClientPersonal = require('./src/SeedTokenAPIClientPersonal');
 const SeedTokenAPIClientCui = require('./src/SeedTokenAPIClientCui');
+const BlockchainUtils = require('./src/utils/BlockchainUtils');
 
 module.exports = {
     BlockchainServiceAPIClient,
     SeedTokenAPIClientAbstract,
     SeedTokenAPIClientCui,
     SeedTokenAPIClientGeneral,
-    SeedTokenAPIClientPersonal
+    SeedTokenAPIClientPersonal,
+    BlockchainUtils
 }
