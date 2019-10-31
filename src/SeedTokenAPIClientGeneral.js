@@ -25,7 +25,7 @@ class SeedTokenAPIClientGeneral extends SeedTokenAPIProviderAbstract {
     this.componentRepositoryContractInstance = new Contract(process.env.COMPONENT_REPOSITORY_CONTRACT_ADDRESS, componentRepositoryAbi, this.blockchainProvider);
     this.userRepositoryContractInstance = new Contract(process.env.USER_REPOSITORY_CONTRACT_ADDRESS, userRepositoryAbi, this.blockchainProvider);
 
-    this.instance = axios.create(defaultOptions);
+    this.axiosInstance = axios.create(defaultOptions);
   }
 
   /**
@@ -100,7 +100,7 @@ class SeedTokenAPIClientGeneral extends SeedTokenAPIProviderAbstract {
    * @summary Gets Latest N Transactions of given address
    */
   async getLatestNTransactions(address, nTransactionsCount) {
-    const result = await this.instance.get(`/api?module=account&action=txlist&address=${address}&sort=desc&page=1&offset=${nTransactionsCount}`);
+    const result = await this.axiosInstance.get(`/api?module=account&action=txlist&address=${address}&sort=desc&page=1&offset=${nTransactionsCount}`);
 
     return result.data.result; 
   }
@@ -113,7 +113,7 @@ class SeedTokenAPIClientGeneral extends SeedTokenAPIProviderAbstract {
    * @summary Gets Latest N Token Transactions of given address
    */
   async getLatestNTokenTransactions(address, nTransactionsCount) {
-    const result = await this.instance.get(`api?module=account&action=tokentx&address=${address}&sort=desc&page=1&offset=${nTransactionsCount}`);
+    const result = await this.axiosInstance.get(`api?module=account&action=tokentx&address=${address}&sort=desc&page=1&offset=${nTransactionsCount}`);
 
     return result.data.result;
   }
