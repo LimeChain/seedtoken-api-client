@@ -20,6 +20,7 @@ const axiosInstance = axios.create(defaultOptions);
 
 /**
  * @summary Handles all blockchain service related functionality
+ * @see API Docs for further information
  */
 class BlockchainServiceAPIClient {
 

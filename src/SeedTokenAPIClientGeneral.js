@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Contract, Wallet } = require('ethers');
+const { Contract, utils, Wallet } = require('ethers');
 const SeedTokenAPIProviderAbstract = require('./SeedTokenAPIClientAbstract');
 const tokenAbi = require('./abis/token');
 const componentRepositoryAbi = require('./abis/componentRepository');
@@ -89,6 +89,28 @@ class SeedTokenAPIClientGeneral extends SeedTokenAPIProviderAbstract {
 
     const transaction = await connectedTokenContractInstance.transfer(toAddress, amount);
 
+    return transaction.hash;
+  }
+
+  /**
+   * @name send
+   * @param {string} privateKey 
+   * @param {string} toAddress 
+   * @param {string} amount - native string amount
+   * @returns {Promise} - when resolved returns {string} - transaction hash
+   * @summary Sends an amount of native currency to given address
+   */
+  async send(privateKey, toAddress, amount) {
+    const wallet = new Wallet(privateKey, this.blockchainProvider);
+
+    // Parses string representation of native currency into a BigNumber instance of the amount
+    const amountBn = utils.parseEther(amount);
+    const tx = {
+      to: toAddress,
+      value: amountBn
+    };
+
+    const transaction = await wallet.sendTransaction(tx);
     return transaction.hash;
   }
 
