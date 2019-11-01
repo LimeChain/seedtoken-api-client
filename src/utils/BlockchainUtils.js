@@ -27,7 +27,19 @@ class BlockchainUtils {
     return BlockchainUtils.safeAreAddressesEqual(targetAddress, signerOfMessage);
   }
 
-  static areAddressesEqual (oldEncryptedWallet, newEncryptedWallet) {
+  static isWalletUpdateInputValid(oldEncryptedWallet, newEncryptedWallet, oldSignature, newSignature) {
+    if (oldSignature !== newSignature) {
+      return false;
+    }
+
+    if(!BlockchainUtils.isWalletInputValid(newEncryptedWallet, newSignature))  {
+      return false;
+    }
+
+    return BlockchainUtils.areAddressesEqual(oldEncryptedWallet, newEncryptedWallet);
+  }
+
+  static areAddressesEqual(oldEncryptedWallet, newEncryptedWallet) {
     const oldAddress = BlockchainUtils.getAddressFromJSON(oldEncryptedWallet);
     const newAddress = BlockchainUtils.getAddressFromJSON(newEncryptedWallet);
 
