@@ -11,7 +11,7 @@ class SeedTokenAPIClientCui extends SeedTokenAPIProviderAbstract {
     super();
 
     if (!forceSingleton) {
-      throw new Error('You must get instance with SeedTokenAPIClientCUIPersonal.getInstance(userIdentityAddress)');
+      throw new Error('You must get instance with SeedTokenAPIClientCui.getInstance(userIdentityAddress)');
     }
 
     // Instantiate user Contract Instance
@@ -22,16 +22,16 @@ class SeedTokenAPIClientCui extends SeedTokenAPIProviderAbstract {
    * @param {string} cuiAddress 
    * @summary Provides a singleton based on input parameter
    */
-  getInstance(cuiAddress) {
-    if (!SeedTokenAPIServicePersonal.instance) {
-      SeedTokenAPIServicePersonal.instance = {};
+  static getInstance(cuiAddress) {
+    if (!SeedTokenAPIClientCui.instance) {
+      SeedTokenAPIClientCui.instance = {};
     }
 
-    if (SeedTokenAPIServicePersonal.instance[cuiAddress]) {
-      return SeedTokenAPIServicePersonal.instance[cuiAddress];
+    if (SeedTokenAPIClientCui.instance[cuiAddress]) {
+      return SeedTokenAPIClientCui.instance[cuiAddress];
     }
-    SeedTokenAPIServicePersonal.instance[cuiAddress] = new SeedTokenAPIClientCUIPersonal(cuiAddress, true);
-    return SeedTokenAPIServicePersonal.instance[cuiAddress];
+    SeedTokenAPIClientCui.instance[cuiAddress] = new SeedTokenAPIClientCui(cuiAddress, true);
+    return SeedTokenAPIClientCui.instance[cuiAddress];
   }
 
   /**

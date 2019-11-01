@@ -44,7 +44,6 @@ class BlockchainServiceAPIClient {
     return result.data;
   }
 
-  // POST /users
   /**
    * @param {string} ownerAddress
    * @summary Creates User Identity Contract based on wallet address
@@ -55,7 +54,6 @@ class BlockchainServiceAPIClient {
     return result.data;
   }
 
-  // GET /users/{userAddress}/identity
   /**
    * @param {string} ownerAddress
    * @summary Gets the corresponding user identity address to wallet address
@@ -72,13 +70,12 @@ class BlockchainServiceAPIClient {
    * @summary Checks the usage of a user for given cui
    */
   static async checkCuiUsage(cuiAddress, userIdentityAddress) {
-    const result = await axiosInstance.get(`/cuis/${cuiAddress}/checkUsage`, { userIdentityAddress });
+    const result = await axiosInstance.get(`/cuis/${cuiAddress}/checkUsage/${userIdentityAddress}`);
 
     return result.data;
   }
 
   /**
-   * 
    * @param {string} cuiAddress
    * @param {string} userIdentityAddress
    * @summary Records usage of a user for given cui
@@ -89,7 +86,6 @@ class BlockchainServiceAPIClient {
     return result.data;
   }
 
-  // GET /cuis/{transactionHash}
   /**
    * @param {string} transactionHash
    * @summary Gets the CUI Address from its transaction creation hash
@@ -100,7 +96,6 @@ class BlockchainServiceAPIClient {
     return result.data;
   }
 
-  // GET /transactions/{transactionHash}
   /**
    * @param {string} transactionHash
    * @summary Gets transaction result by its hash

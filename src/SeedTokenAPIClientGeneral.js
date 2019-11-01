@@ -127,7 +127,7 @@ class SeedTokenAPIClientGeneral extends SeedTokenAPIProviderAbstract {
     return result.data.result; 
   }
 
-   /**
+  /**
    * @name getLatestNTokenTransactions
    * @param {string} address
    * @param {number} nTransactionsCount - how many maximum transactions to be returned

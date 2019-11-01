@@ -22,16 +22,16 @@ class SeedTokenAPIClientPersonal extends SeedTokenAPIProviderAbstract {
    * @param {string} userIdentityAddress 
    * @summary Provides a singleton based on input parameter
    */
-  getInstance(userIdentityAddress) {
-    if (!SeedTokenAPIServicePersonal.instance) {
-      SeedTokenAPIServicePersonal.instance = {};
+  static getInstance(userIdentityAddress) {
+    if (!SeedTokenAPIClientPersonal.instance) {
+      SeedTokenAPIClientPersonal.instance = {};
     }
 
-    if (SeedTokenAPIServicePersonal.instance[userIdentityAddress]) {
-      return SeedTokenAPIServicePersonal.instance[userIdentityAddress];
+    if (SeedTokenAPIClientPersonal.instance[userIdentityAddress]) {
+      return SeedTokenAPIClientPersonal.instance[userIdentityAddress];
     }
-    SeedTokenAPIServicePersonal.instance[userIdentityAddress] = new SeedTokenAPIClientPersonal(userIdentityAddress, true);
-    return SeedTokenAPIServicePersonal.instance[userIdentityAddress];
+    SeedTokenAPIClientPersonal.instance[userIdentityAddress] = new SeedTokenAPIClientPersonal(userIdentityAddress, true);
+    return SeedTokenAPIClientPersonal.instance[userIdentityAddress];
   }
 
   /**
