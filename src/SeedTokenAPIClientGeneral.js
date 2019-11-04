@@ -29,12 +29,12 @@ class SeedTokenAPIClientGeneral extends SeedTokenAPIProviderAbstract {
   }
 
   /**
-   * @name getBalance
+   * @name getTokenBalance
    * @param {string} address
    * @returns {Promise} - when resolved returns {number} - balance
    * @summary Gets the Token Amount of a given address
    */
-  async getBalance(address) {
+  async getTokenBalance(address) {
     // Returned type is in hex format
     const hexBalance = await this.tokenContractInstance.balanceOf(address);
 

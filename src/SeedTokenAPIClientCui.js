@@ -14,7 +14,7 @@ class SeedTokenAPIClientCui extends SeedTokenAPIProviderAbstract {
       throw new Error('You must get instance with SeedTokenAPIClientCui.getInstance(userIdentityAddress)');
     }
 
-    // Instantiate user Contract Instance
+    // Instantiate cui Contract Instance
     this.cuiContractInstance = new Contract(cuiAddress, cuiAbi, this.blockchainProvider);
   }
 

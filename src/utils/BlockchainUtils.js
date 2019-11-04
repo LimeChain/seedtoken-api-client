@@ -1,13 +1,13 @@
-const ethers = require('ethers');
+const { utils } = require('ethers');
 
 class BlockchainUtils {
 
   static getSignerOfMessage(message, signature) {
-    return ethers.utils.verifyMessage(message, signature);
+    return utils.verifyMessage(message, signature);
   }
 
   static getAddressFromJSON(json) {
-    const address = ethers.utils.getJsonWalletAddress(json);
+    const address = utils.getJsonWalletAddress(json);
     return BlockchainUtils.safeAdd0x(address);
   }
 
@@ -23,7 +23,7 @@ class BlockchainUtils {
 
   static isWalletInputValid(encryptedWallet, signature) {
     const targetAddress = BlockchainUtils.getAddressFromJSON(encryptedWallet);
-    const signerOfMessage = BlockchainUtils.getSignerOfMessage(process.env.BLOCKCHAIN_SERVICE_SIGN_MESSAGE, signature);
+    const signerOfMessage = BlockchainUtils.getSignerOfMessage(process.env.VUE_APP_SIGN_MESSAGE, signature);
     return BlockchainUtils.safeAreAddressesEqual(targetAddress, signerOfMessage);
   }
 
@@ -44,6 +44,10 @@ class BlockchainUtils {
     const newAddress = BlockchainUtils.getAddressFromJSON(newEncryptedWallet);
 
     return BlockchainUtils.safeAreAddressesEqual(oldAddress, newAddress);
+  }
+
+  static checkAddress(address) {
+    return utils.getAddress(address);
   }
 }
 
