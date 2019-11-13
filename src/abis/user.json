@@ -40,6 +40,48 @@
     "constant": false,
     "inputs": [
       {
+        "name": "_component",
+        "type": "address"
+      }
+    ],
+    "name": "unsubscribeFrom",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_myComponent",
+        "type": "address"
+      },
+      {
+        "name": "_otherComponent",
+        "type": "address"
+      }
+    ],
+    "name": "unsubscribeComponentFrom",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
         "name": "_amount",
         "type": "uint256"
       }
@@ -56,26 +98,17 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_licenseFee",
-        "type": "uint256"
-      },
-      {
-        "name": "_isRevoked",
-        "type": "bool"
-      }
-    ],
-    "name": "createCUI",
+    "constant": true,
+    "inputs": [],
+    "name": "getPayer",
     "outputs": [
       {
         "name": "",
-        "type": "bool"
+        "type": "address"
       }
     ],
     "payable": false,
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -95,6 +128,44 @@
     ],
     "payable": false,
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_componentAddress",
+        "type": "address"
+      }
+    ],
+    "name": "unrevokeComponent",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_componentAddress",
+        "type": "address"
+      }
+    ],
+    "name": "revokeComponent",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -129,7 +200,7 @@
     "constant": false,
     "inputs": [
       {
-        "name": "_cuiAddress",
+        "name": "_componentAddress",
         "type": "address"
       },
       {
@@ -166,11 +237,23 @@
     "constant": false,
     "inputs": [
       {
-        "name": "_cui",
-        "type": "address"
+        "name": "_licenseFee",
+        "type": "uint256"
+      },
+      {
+        "name": "_isRevoked",
+        "type": "bool"
+      },
+      {
+        "name": "_components",
+        "type": "address[]"
+      },
+      {
+        "name": "_componentsBudgets",
+        "type": "uint256[]"
       }
     ],
-    "name": "unsubscribe",
+    "name": "createComponent",
     "outputs": [
       {
         "name": "",
@@ -215,29 +298,6 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_cui",
-        "type": "address"
-      },
-      {
-        "name": "_approvedBudget",
-        "type": "uint256"
-      }
-    ],
-    "name": "subscribe",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [],
     "name": "isOwner",
@@ -266,44 +326,6 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_cuiAddress",
-        "type": "address"
-      }
-    ],
-    "name": "revokeCUI",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_cuiAddress",
-        "type": "address"
-      }
-    ],
-    "name": "unrevokeCUI",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [],
     "name": "getSubscriptionsArray",
@@ -315,6 +337,56 @@
     ],
     "payable": false,
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_myComponent",
+        "type": "address"
+      },
+      {
+        "name": "_otherComponent",
+        "type": "address"
+      },
+      {
+        "name": "_approvedBudget",
+        "type": "uint256"
+      }
+    ],
+    "name": "subscribeComponentTo",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_component",
+        "type": "address"
+      },
+      {
+        "name": "_approvedBudget",
+        "type": "uint256"
+      }
+    ],
+    "name": "subscribeTo",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -416,7 +488,7 @@
     "inputs": [
       {
         "indexed": true,
-        "name": "cui",
+        "name": "component",
         "type": "address"
       },
       {
@@ -438,7 +510,7 @@
     "inputs": [
       {
         "indexed": true,
-        "name": "cui",
+        "name": "component",
         "type": "address"
       },
       {
@@ -455,7 +527,7 @@
     "inputs": [
       {
         "indexed": true,
-        "name": "cuiAddress",
+        "name": "componentAddress",
         "type": "address"
       },
       {
@@ -469,7 +541,7 @@
         "type": "uint256"
       }
     ],
-    "name": "CUICreated",
+    "name": "ComponentCreated",
     "type": "event"
   },
   {
@@ -477,7 +549,7 @@
     "inputs": [
       {
         "indexed": true,
-        "name": "cuiAddress",
+        "name": "componentAddress",
         "type": "address"
       },
       {
@@ -486,7 +558,7 @@
         "type": "address"
       }
     ],
-    "name": "CUIRevoked",
+    "name": "ComponentRevoked",
     "type": "event"
   },
   {
@@ -494,7 +566,7 @@
     "inputs": [
       {
         "indexed": true,
-        "name": "cuiAddress",
+        "name": "componentAddress",
         "type": "address"
       },
       {
@@ -503,7 +575,7 @@
         "type": "address"
       }
     ],
-    "name": "CUIUnrevoked",
+    "name": "ComponentUnrevoked",
     "type": "event"
   },
   {
@@ -511,7 +583,7 @@
     "inputs": [
       {
         "indexed": true,
-        "name": "cuiAddress",
+        "name": "componentAddress",
         "type": "address"
       },
       {
@@ -520,7 +592,56 @@
         "type": "uint256"
       }
     ],
-    "name": "CUILicenseFeeChanged",
+    "name": "ComponentLicenseFeeChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "componentAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "componentSubscribedTo",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "budget",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "ComponentSubscription",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "componentAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "componentUnsubscribeFrom",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "ComponentUnsubscription",
     "type": "event"
   },
   {

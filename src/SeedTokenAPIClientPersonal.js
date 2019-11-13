@@ -35,20 +35,20 @@ class SeedTokenAPIClientPersonal extends SeedTokenAPIProviderAbstract {
   }
 
   /**
-   * @name getUserCuisAddresses()
-   * @returns {Promise} - when resolved returns {Array<string>} - addresses of cuis
-   * @summary Returns an array of the CUI addresses this User owns
+   * @name getUserComponentsAddresses()
+   * @returns {Promise} - when resolved returns {Array<string>} - addresses of components
+   * @summary Returns an array of the Component addresses this User owns
    */
-  async getUserCuisAddresses() {
+  async getUserComponentsAddresses() {
     return this.userContractInstance.getComponentsArray();
   }
   
   /**
-   * @name getUserCuisCount
-   * @returns {Promise} - when resolved returns {number} - total count of user's cuis
-   * @summary Gets the count of the User's cuis
+   * @name getUserComponentsCount
+   * @returns {Promise} - when resolved returns {number} - total count of user's components
+   * @summary Gets the count of the User's components
    */
-  async getUserCuisCount() {
+  async getUserComponentsCount() {
     // Returned type is in hex format
     const hexCount = await this.userContractInstance.getComponentsLength();
 
@@ -58,7 +58,7 @@ class SeedTokenAPIClientPersonal extends SeedTokenAPIProviderAbstract {
   /**
    * @name getUserSubscriptions
    * @returns {Promise} - when resolved returns {Array<string>}
-   * @summary Returns the addresses of the CUIs the User has subscriptions to
+   * @summary Returns the addresses of the Components the User has subscriptions to
    */
   async getUserSubscriptions() {
     return this.userContractInstance.getSubscriptionsArray();

@@ -42,20 +42,20 @@ class SeedTokenAPIClientGeneral extends SeedTokenAPIProviderAbstract {
   }
 
   /**
-   * @name getCuisAddresses
+   * @name getComponentsAddresses
    * @returns {Promise} - when resolved returns {Array<string>} - array of string addresses
    * @summary Gets an array of all the addresses of the components
    */
-  async getCuisAddresses() {
+  async getComponentsAddresses() {
     return this.componentRepositoryContractInstance.getComponents();
   }
 
   /**
-   * @name getCuisCount
-   * @returns {Promise} - when resolved returns {number} - total count of cuis
-   * @summary Gets the count of cuis in the smart contract
+   * @name getComponentsCount
+   * @returns {Promise} - when resolved returns {number} - total count of components
+   * @summary Gets the count of components in the smart contract
    */
-  async getCuisCount() {
+  async getComponentsCount() {
     // Returned type is in hex format
     const hexCount = await this.componentRepositoryContractInstance.getComponentsLength();
 
@@ -63,13 +63,13 @@ class SeedTokenAPIClientGeneral extends SeedTokenAPIProviderAbstract {
   }
 
   /**
-   * @name getCuiOwner
-   * @param {string} cuiAddress - address of cui
+   * @name getComponentOwner
+   * @param {string} componentAddress - address of component
    * @returns {Promise} - when resolved returns {string|null} - owner address or null
-   * @summary Gets owner of the CUI based on cui existance in repository contract
+   * @summary Gets owner of the Component based on component existance in repository contract
    */
-  async getCuiOwner(cuiAddress) {
-    const result = await this.componentRepositoryContractInstance.componentsData(cuiAddress);
+  async getComponentOwner(componentAddress) {
+    const result = await this.componentRepositoryContractInstance.componentsData(componentAddress);
 
     return result.exists ? result.owner : null;
   }
