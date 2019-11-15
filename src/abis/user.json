@@ -37,6 +37,20 @@
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [],
+    "name": "PAYMENT_FREE",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "constant": false,
     "inputs": [
       {
@@ -131,6 +145,20 @@
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [],
+    "name": "PAYMENT_PER_USAGE",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "constant": false,
     "inputs": [
       {
@@ -158,6 +186,37 @@
       }
     ],
     "name": "revokeComponent",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_myComponent",
+        "type": "address"
+      },
+      {
+        "name": "_otherComponent",
+        "type": "address"
+      },
+      {
+        "name": "_approvedBudget",
+        "type": "uint256"
+      },
+      {
+        "name": "_paymentType",
+        "type": "uint256"
+      }
+    ],
+    "name": "subscribeComponentTo",
     "outputs": [
       {
         "name": "",
@@ -197,29 +256,6 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_componentAddress",
-        "type": "address"
-      },
-      {
-        "name": "_licenseFee",
-        "type": "uint256"
-      }
-    ],
-    "name": "modifyLicenseFee",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [],
     "name": "getSubscriptionsLength",
@@ -231,37 +267,6 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_licenseFee",
-        "type": "uint256"
-      },
-      {
-        "name": "_isRevoked",
-        "type": "bool"
-      },
-      {
-        "name": "_components",
-        "type": "address[]"
-      },
-      {
-        "name": "_componentsBudgets",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "createComponent",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -326,6 +331,53 @@
     "type": "function"
   },
   {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_isRevoked",
+        "type": "bool"
+      },
+      {
+        "name": "_perUsageIsActive",
+        "type": "bool"
+      },
+      {
+        "name": "_perUsageFee",
+        "type": "uint256"
+      },
+      {
+        "name": "_perMonthIsActive",
+        "type": "bool"
+      },
+      {
+        "name": "_perMonthFee",
+        "type": "uint256"
+      },
+      {
+        "name": "_components",
+        "type": "address[]"
+      },
+      {
+        "name": "_componentsBudgets",
+        "type": "uint256[]"
+      },
+      {
+        "name": "_componentsPaymentTypes",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "createComponent",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "constant": true,
     "inputs": [],
     "name": "getSubscriptionsArray",
@@ -343,42 +395,19 @@
     "constant": false,
     "inputs": [
       {
-        "name": "_myComponent",
+        "name": "_componentAddress",
         "type": "address"
       },
       {
-        "name": "_otherComponent",
-        "type": "address"
-      },
-      {
-        "name": "_approvedBudget",
-        "type": "uint256"
-      }
-    ],
-    "name": "subscribeComponentTo",
-    "outputs": [
-      {
-        "name": "",
+        "name": "_isActive",
         "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_component",
-        "type": "address"
       },
       {
-        "name": "_approvedBudget",
+        "name": "_fee",
         "type": "uint256"
       }
     ],
-    "name": "subscribeTo",
+    "name": "modifyMonthlyPayment",
     "outputs": [
       {
         "name": "",
@@ -402,6 +431,60 @@
       }
     ],
     "name": "send",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_componentAddress",
+        "type": "address"
+      },
+      {
+        "name": "_isActive",
+        "type": "bool"
+      },
+      {
+        "name": "_fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "modifyUsagePayment",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_component",
+        "type": "address"
+      },
+      {
+        "name": "_approvedBudget",
+        "type": "uint256"
+      },
+      {
+        "name": "_paymentType",
+        "type": "uint256"
+      }
+    ],
+    "name": "subscribeTo",
     "outputs": [
       {
         "name": "",
@@ -462,6 +545,20 @@
       {
         "name": "",
         "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "PAYMENT_PER_MONTH",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -588,11 +685,38 @@
       },
       {
         "indexed": false,
-        "name": "licenseFee",
+        "name": "isActive",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "fee",
         "type": "uint256"
       }
     ],
-    "name": "ComponentLicenseFeeChanged",
+    "name": "ComponentUsagePaymentChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "componentAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "isActive",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "ComponentMonthlyPaymentChanged",
     "type": "event"
   },
   {
