@@ -36,18 +36,36 @@ class SeedTokenAPIClientComponent extends SeedTokenAPIProviderAbstract {
 
   /**
    * @name getComponentData
-   * @returns {Promise} - when resolved returns {string, number, number, boolean, number, number} - owner address, license fee, latest license change, is the component is revoked, count of component subscribers, count of component subscriptions
+   * @returns {Promise} - when resolved returns {string, boolean, boolean, number, bool, number, number, number} - 
+   * owner address, 
+   * if component is active, 
+   * if usage payment is active, 
+   * usage payment fee, 
+   * if monthly payment is active, 
+   * monthly payment fee, 
+   * count of component subscribers, count of component subscriptions
    * @summary Gets information about Component
    */
   async getComponentData() {
+    const componentData = await this.componentContractInstance.getData();
     return {
-      owner: await this.componentContractInstance.owner(),
-      licenseFee: Number(await this.componentContractInstance.licenseFee()),
-      latestLicenseChange: Number(await this.componentContractInstance.latestLicenseChange()),
-      isRevoked: await this.componentContractInstance.isRevoked(),
-      subscribersCount: Number(await this.componentContractInstance.getSubscribersArrayLength()),
-      subscriptionsCount: Number(await this.componentContractInstance.getSubscriptionsLength())
+      owner: componentData[0],
+      isActive: !componentData[1],
+      paymentUsageIsActive: componentData[2],
+      paymentUsageFee: Number(componentData[3]),
+      paymentMonthlyIsActive: componentData[4],
+      paymentMonthlyFee: Number(componentData[5]),
+      subscribersCount: Number(componentData[6]),
+      subscriptionsCount: Number(componentData[7])
     };
+  }
+
+  /**
+   * @name isFree
+   * @returns {Promise} - when resolved returns {boolean} - if the component is payment type is free
+   */
+  async isFree() {
+    return this.componentContractInstance.isFree();
   }
 
   /**

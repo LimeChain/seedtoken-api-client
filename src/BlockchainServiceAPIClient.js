@@ -89,10 +89,22 @@ class BlockchainServiceAPIClient {
    * @param {string} componentAddress
    * @param {string} subscriberAddress
    * @returns {Promise} - when resolved returns {string} - transactionHash
-   * @summary Records usage of a user for given components
+   * @summary Records usage of a subscriber for given component
    */
   static async recordUsage(componentAddress, subscriberAddress) {
     const result = await axiosInstance.post(`/components/${componentAddress}/recordUsage`, { subscriberAddress });
+
+    return result.data;
+  }
+
+  /**
+   * @param {string} componentAddress
+   * @param {string} subscriberAddress
+   * @returns {Promise} - when resolved returns {string} - transactionHash
+   * @summary Charges monthly subscription of a subscriber for given component
+   */
+  static async chargeMonthlySubscription(componentAddress, subscriberAddress) {
+    const result = await axiosInstance.post(`/components/${componentAddress}/chargeMonthlySubscription`, { subscriberAddress });
 
     return result.data;
   }
