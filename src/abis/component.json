@@ -2,7 +2,7 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "latestLicenseChange",
+    "name": "PAYMENT_FREE",
     "outputs": [
       {
         "name": "",
@@ -40,6 +40,20 @@
       {
         "name": "",
         "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "PAYMENT_PER_USAGE",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -132,6 +146,33 @@
   },
   {
     "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "payments",
+    "outputs": [
+      {
+        "name": "isActive",
+        "type": "bool"
+      },
+      {
+        "name": "latestChange",
+        "type": "uint256"
+      },
+      {
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
     "inputs": [],
     "name": "owner",
     "outputs": [
@@ -161,7 +202,7 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "licenseFee",
+    "name": "THIRTY_DAY_SECONDS",
     "outputs": [
       {
         "name": "",
@@ -229,6 +270,20 @@
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [],
+    "name": "PAYMENT_PER_MONTH",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "name": "_globalController",
@@ -239,12 +294,24 @@
         "type": "address"
       },
       {
-        "name": "_licenseFee",
+        "name": "_isRevoked",
+        "type": "bool"
+      },
+      {
+        "name": "_perUsageIsActive",
+        "type": "bool"
+      },
+      {
+        "name": "_perUsageFee",
         "type": "uint256"
       },
       {
-        "name": "_isRevoked",
+        "name": "_perMonthIsActive",
         "type": "bool"
+      },
+      {
+        "name": "_perMonthFee",
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -290,7 +357,39 @@
       },
       {
         "indexed": false,
-        "name": "licenseFee",
+        "name": "fee",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "end",
+        "type": "uint256"
+      }
+    ],
+    "name": "MonthlySubscription",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "subscriber",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "subscriptionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "paymentType",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "fee",
         "type": "uint256"
       }
     ],
@@ -319,6 +418,21 @@
     "inputs": [
       {
         "indexed": false,
+        "name": "paymentType",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "previousActivity",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "newActivity",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
         "name": "previousFee",
         "type": "uint256"
       },
@@ -333,7 +447,7 @@
         "type": "address"
       }
     ],
-    "name": "LicenseFeeChange",
+    "name": "PaymentChanged",
     "type": "event"
   },
   {
@@ -413,11 +527,38 @@
     "constant": false,
     "inputs": [
       {
-        "name": "_licenseFee",
+        "name": "_isActive",
+        "type": "bool"
+      },
+      {
+        "name": "_fee",
         "type": "uint256"
       }
     ],
-    "name": "modifyLicenseFee",
+    "name": "modifyPerUsagePayment",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_isActive",
+        "type": "bool"
+      },
+      {
+        "name": "_fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "modifyPerMonthPayment",
     "outputs": [
       {
         "name": "",
@@ -458,7 +599,12 @@
   },
   {
     "constant": false,
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "_paymentType",
+        "type": "uint256"
+      }
+    ],
     "name": "subscribe",
     "outputs": [
       {
@@ -476,6 +622,10 @@
       {
         "name": "_componentAddress",
         "type": "address"
+      },
+      {
+        "name": "_paymentType",
+        "type": "uint256"
       }
     ],
     "name": "subscribeTo",
@@ -512,6 +662,25 @@
       }
     ],
     "name": "record",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_subscriber",
+        "type": "address"
+      }
+    ],
+    "name": "chargeMonthlySubscription",
     "outputs": [
       {
         "name": "",
@@ -581,6 +750,10 @@
           {
             "name": "fee",
             "type": "uint256"
+          },
+          {
+            "name": "paymentType",
+            "type": "uint256"
           }
         ],
         "name": "",
@@ -626,6 +799,10 @@
           {
             "name": "fee",
             "type": "uint256"
+          },
+          {
+            "name": "paymentType",
+            "type": "uint256"
           }
         ],
         "name": "",
@@ -644,6 +821,62 @@
       {
         "name": "",
         "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "isFree",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getData",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      },
+      {
+        "name": "",
+        "type": "bool"
+      },
+      {
+        "name": "",
+        "type": "bool"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "bool"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256"
       }
     ],
     "payable": false,
